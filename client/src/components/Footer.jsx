@@ -2,7 +2,7 @@ function Link({ uri, text }) {
   return <a href={uri} target="_blank" rel="noreferrer">{text}</a>;
 }
 
-function Footer() {
+export default function Footer() {
   return (
     <footer>
       <h2>More resources</h2>
@@ -13,5 +13,3 @@ function Footer() {
     </footer >
   );
 }
-
-export default Footer;

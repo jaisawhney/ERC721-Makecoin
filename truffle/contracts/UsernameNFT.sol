@@ -8,7 +8,7 @@ contract UsernameNFT is ERC721URIStorage, Ownable {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
 
-    // Existing usernames mapped to the owners
+    // Existing usernames mapped to their owners
     mapping(string => address) private _existingUsernames;
 
     // Some arbitrary amount
@@ -23,7 +23,7 @@ contract UsernameNFT is ERC721URIStorage, Ownable {
         _tokenIds.increment();
         uint256 _newTokenId = _tokenIds.current();
 
-        _mint(_account, _newTokenId);
+        _safeMint(_account, _newTokenId);
         _setTokenURI(_newTokenId, _tokenURI);
 
         _existingUsernames[_username] = _account;
@@ -36,7 +36,7 @@ contract UsernameNFT is ERC721URIStorage, Ownable {
     }
 
     function transfer(address _from, address _to, uint256 _tokenId) public {
-        transferFrom(_from, _to, _tokenId);
+        safeTransferFrom(_from, _to, _tokenId);
     }
 
     function getUsernameOwner(string memory _username) public view returns (address) {
